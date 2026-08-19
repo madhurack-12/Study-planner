@@ -1,0 +1,207 @@
+   <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyPulse - Smart Study Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="landing" id="home">
+    <nav class="nav">
+      <div class="brand"><span class="logo">SP</span><span>StudyPulse</span></div>
+      <a href="#student-setup">Start</a>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Smart planner for serious students</p>
+        <h1>Plan chapters. Track the day. Improve tomorrow.</h1>
+        <p class="lead">StudyPulse creates realistic chapter schedules and scores how well a student used the entire day, including study, phone, sleep, sports, and reflection.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#student-setup">Create my profile</a>
+          <a class="button" href="#modules">View modules</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Study dashboard preview">
+        <div class="preview-card big">
+          <span>Today score</span>
+          <strong>82%</strong>
+          <div class="meter"><i style="width:82%"></i></div>
+        </div>
+        <div class="preview-card small one"><span>Physics</span><strong>1.8h</strong></div>
+        <div class="preview-card small two"><span>Break</span><strong>20m</strong></div>
+        <div class="preview-card small three"><span>Phone</span><strong>1.2h</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modules" id="modules">
+    <article>
+      <span>01</span>
+      <h2>Chapter analysis</h2>
+      <p>Students enter subject, chapter name, pages, and difficulty. The app estimates time using reading, practice, and revision load.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <h2>Balanced timetable</h2>
+      <p>The planner creates study blocks with recovery breaks, sports or activity time, and a final recall review.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <h2>Day experience score</h2>
+      <p>Students answer reflection questions and log study, phone, sleep, sports, life, and creative time to get a 100% utilization score.</p>
+    </article>
+  </section>
+
+  <section class="setup" id="student-setup">
+    <div class="setup-card">
+      <aside>
+        <h2>Student setup</h2>
+        <p>Enter your details first, then StudyPulse personalizes the planner and feedback.</p>
+        <div class="steps">
+          <div>College and course</div>
+          <div>Exam goal</div>
+          <div>Study rhythm</div>
+        </div>
+      </aside>
+
+      <form id="profileForm">
+        <div class="two">
+          <label>Student name <input id="studentName" required placeholder="Your name"></label>
+          <label>College <input id="collegeName" required placeholder="College name"></label>
+        </div>
+        <div class="two">
+          <label>Course <input id="courseName" required placeholder="B.Tech CSE"></label>
+          <label>Semester / year <input id="semester" placeholder="2nd year"></label>
+        </div>
+        <div class="two">
+          <label>Exam / goal <input id="goalName" placeholder="End semester"></label>
+          <label>Target hours <input id="targetHours" type="number" min="1" max="14" step="0.5" value="5"></label>
+        </div>
+        <label>Main struggle
+          <select id="struggle">
+            <option>Phone distraction</option>
+            <option>Backlog chapters</option>
+            <option>Low consistency</option>
+            <option>Sleep schedule</option>
+            <option>Exam fear</option>
+          </select>
+        </label>
+        <label>Academic aim
+          <textarea id="aim" placeholder="Example: Finish physics backlog and improve problem solving before internals."></textarea>
+        </label>
+        <button class="button primary" type="submit">Enter dashboard</button>
+      </for
+   </div>
+  </section>
+
+  <section class="dashboard hidden" id="dashboard">
+    <aside class="sidebar">
+      <div class="student-card">
+        <span class="logo">SP</span>
+        <h2 id="profileName">Student</h2>
+        <p id="profileMeta">College - Course</p>
+      </div>
+      <button class="tab active" id="plannerTab" type="button">Study planner</button>
+      <button class="tab" id="dayTab" type="button">Day experience</button>
+      <p class="sidebar-note" id="sidebarNote">Generate your plan, then compare it with your real day.</p>
+    </aside>
+
+    <main class="workspace" id="plannerView">
+      <header class="workspace-head">
+        <div>
+          <h2>Adaptive study planner</h2>
+          <p id="plannerIntro">Add chapters and generate a realistic timetable.</p>
+        </div>
+        <span id="planStamp">Ready</span>
+      </header>
+
+      <div class="work-grid">
+        <section class="panel">
+          <h3>Chapter input</h3>
+          <div class="two">
+            <label>Start time <input id="startTime" type="time" value="06:30"></label>
+            <label>Available study hours <input id="availableHours" type="number" min="1" max="14" step="0.5" value="5"></label>
+          </div>
+          <div class="two">
+            <label>Focus mode
+              <select id="focusLevel">
+                <option value="calm">Calm</option>
+                <option value="normal" selected>Normal</option>
+                <option value="intense">Intense</option>
+              </select>
+            </label>
+            <label>Preferred break
+              <select id="activityBreak">
+                <option>Walk</option>
+                <option selected>Sports</option>
+                <option>Music</option>
+                <option>Meditation</option>
+              </select>
+            </label>
+          </div>
+          <div id="chapters"></div>
+          <div class="actions">
+            <button class="button" id="addChapter" type="button">Add chapter</button>
+            <button class="button primary" id="generatePlan" type="button">Generate timetable</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>AI-style output</h3>
+          <div id="planOutput"></div>
+        </section>
+      </div>
+    </main>
+
+    <main class="workspace hidden" id="dayView">
+      <header class="workspace-head">
+        <div>
+          <h2>Daily experience analysis</h2>
+          <p>Answer questions and log your hours to get a 100% utilization score.</p>
+        </div>
+        <span id="dayStamp">Today</span>
+      </header>
+
+      <div class="work-grid">
+        <section class="panel">
+          <h3>Reflection questions</h3>
+          <label>How was your focus today?
+            <select id="focusFeeling">
+              <option value="excellent">Excellent</option>
+              <option value="good" selected>Good</option>
+              <option value="average">Average</option>
+              <option value="poor">Poor</option>
+            </select>
+          </label>
+          <label>What did you complete today?
+            <textarea id="completedToday" placeholder="Example: Revised chemical bonding and solved 20 problems."></textarea>
+          </label>
+          <label>What disturbed your day?
+            <textarea id="disturbance" placeholder="Example: Phone, travel, late sleep, friends, fear."></textarea>
+          </label>
+          <label>One thing you are proud of
+            <input id="proudMoment" placeholder="Example: I studied even when I felt lazy.">
+          </label>
+
+          <h3 class="spaced">Time log</h3>
+          <div id="activities"></div>
+          <div class="actions">
+            <button class="button" id="addActivity" type="button">Add activity</button>
+            <button class="button primary" id="analyzeDay" type="button">Analyze day</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Score and feedback</h3>
+          <div id="dayOutput"></div>
+        </section>
+      </div>
+    </main>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
